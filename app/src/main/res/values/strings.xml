@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Harman_FA</string>
+    <string name="enter_last_name">Enter last name...</string>
+    <string name="enter_first_name">Enter first name...</string>
+    <string name="enter_phone">Enter phone number...</string>
+    <string name="enter_address">Enter address...</string>
+    <string name="save_contact">Save Contact</string>
+</resources>
