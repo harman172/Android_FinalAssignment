@@ -144,22 +144,23 @@ public class MainActivity extends AppCompatActivity {
 
                 if (index == 0) {
 
+                    if(personList.size() == 0){
+                        return false;
+                    }
 
 
                     if (!etSearch.getText().toString().isEmpty()) {
-                        if(searchList.size() == 0){
-                            return false;
-                        }
+
                         if (mDatabaseHelper.deletePerson(searchList.get(position).getId())){
                             Toast.makeText(MainActivity.this, "Person deleted successfully!", Toast.LENGTH_SHORT).show();
+                            searchList.remove(position);
+                            personAdapter.notifyDataSetChanged();
                             loadAllPersons();
                         }
                         else
                             Toast.makeText(MainActivity.this, "Error in deletion...", Toast.LENGTH_SHORT).show();
                     } else {
-                        if(personList.size() == 0){
-                            return false;
-                        }
+
                         //DataBase delete code
                         if (mDatabaseHelper.deletePerson(personList.get(position).getId())) {
                             Toast.makeText(MainActivity.this, "Person deleted successfully!", Toast.LENGTH_SHORT).show();
@@ -199,8 +200,13 @@ public class MainActivity extends AppCompatActivity {
 
             Log.i(TAG, "loadEmployees: 2 " + personList);
 
-            personAdapter = new PersonAdapter(this, personList);
-            listView.setAdapter(personAdapter);
+            if(etSearch.getText().toString().isEmpty()) {
+                personAdapter = new PersonAdapter(this, personList);
+                listView.setAdapter(personAdapter);
+            } else{
+                personAdapter = new PersonAdapter(this, searchList);
+                listView.setAdapter(personAdapter);
+            }
 
         } else{
             tvNoItem.setVisibility(View.VISIBLE);
