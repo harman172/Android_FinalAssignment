@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
                 if (s.length() != 0) {
 
                     for (PersonModel personModel : personList) {
-                        if (personModel.getfName().contains(text)) {
+                        if (personModel.getfName().contains(text) || personModel.getlName().contains(text)) {
 
                             searchList.add(personModel);
                         }
